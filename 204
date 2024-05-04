@@ -1,0 +1,22 @@
+ques 204: time limit exceed
+class Solution {
+    public int countPrimes(int n) {
+        int count=0;
+        if(n>2 ) count++;
+        for(int i=3; i<n; i=i+2){
+            if(1==checkprime(i)){
+                count++;
+            }
+        }
+        return count;
+        
+    }
+     public int checkprime(int n){
+        for(int j=2; j*j <=n; j++){
+            if(n%j==0){
+                return -1;
+                }
+            }
+        return 1;
+    }
+}

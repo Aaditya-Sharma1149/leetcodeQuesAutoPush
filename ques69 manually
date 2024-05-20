@@ -1,0 +1,26 @@
+ques 69 sqrt(x)
+base case handeled differntly
+not a dynamic approach;
+
+class Solution {
+    public int mySqrt(int x) {
+        int left=0;
+        int right=x;
+        int mid; 
+        int ans=0;
+        while(left<=right){
+            mid = left + (right-left)/2;
+            if(mid>46340){
+                right=mid-1;
+            }
+            else if( mid * mid > x){
+                right=mid-1;
+            }
+            else if ( mid * mid <= x){
+                left=mid+1;
+                ans=mid;
+            }
+        }
+        return ans;
+    }
+}

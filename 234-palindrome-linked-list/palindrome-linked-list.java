@@ -18,14 +18,11 @@ class Solution {
         ListNode right = reverse(slow.next, slow);
         ListNode left = head;
         while (left != slow) {
-            System.out.println("" + left.val + "|" + right.val);
             if (right.val != left.val) {
                 return false;
             }
             left = left.next;
             right = right.next;
-            System.out.println("left-->" + left);
-            System.out.println("right--> " + right);
         }
         return true;
     }

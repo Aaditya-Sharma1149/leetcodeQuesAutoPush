@@ -9,33 +9,57 @@
  * }
  */
 class Solution {
+    ListNode fast;
+    ListNode Head;
+
     public boolean isPalindrome(ListNode head) {
-        ListNode slow = head, fast = head;
-        while (fast != null && fast.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
+
+        ListNode mid = half(head);          
+
+        if ( fast == null){                  //even length LL
+            reverse(mid);
+        }else{                               //odd length LL
+            reverse(mid.next);
         }
-        ListNode right = reverse(slow.next, slow);
-        ListNode left = head;
-        while (left != slow) {
-            if (right.val != left.val) {
+
+        return palindrome(head,Head);       
+        
+    }
+    public void reverse(ListNode head){         //reversing LL
+        ListNode temp = head;
+        ListNode NextNode;
+        ListNode prev = null;
+        while ( temp != null){
+            NextNode = temp.next;
+            temp.next = prev;
+
+            prev = temp;
+            temp = NextNode;
+        }
+        Head = prev;
+        //prev is 1st node of 2nd linked list;
+    }
+    public ListNode half(ListNode head){
+        ListNode slow = head;
+        fast = head;
+
+        while ( fast != null && fast.next != null){
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        //slow for even len LL is starting node for next half
+        //slow for odd  len LL is last node of 1st half
+        return slow;
+
+    }
+    public boolean palindrome(ListNode head, ListNode head2){
+        while ( head != null && head2 != null){
+            if ( head.val != head2.val){
                 return false;
             }
-            left = left.next;
-            right = right.next;
+            head  = head.next;
+            head2 = head2.next;
         }
         return true;
     }
-
-    private ListNode reverse(ListNode head, ListNode prev) {
-        ListNode nextNode = null;
-        while (head != null) {
-            nextNode = head.next;
-            head.next = prev;
-            prev = head;
-            head = nextNode;
-        }
-        return prev;
-    }
-
 }

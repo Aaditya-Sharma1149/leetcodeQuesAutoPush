@@ -35,112 +35,26 @@ class Solution {
         n=n/10;
         int rem3=n%10;
 
+        String[] tens = {"", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
+        String[] ones = {"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven",
+                    "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
+
         StringBuilder result = new StringBuilder();
 
         if(rem3>0){
-            result.append(ones(rem3)).append(" Hundred ");
+            result.append(ones[rem3]).append(" Hundred ");
         }
         if(rem2==1){
-            result.append(eleven(rem1));
+            result.append(ones[10+rem1]);
             return result.toString();
         }
         if(rem2>1){
-            result.append(tens(rem2)+" ");
+            result.append(tens[rem2]+" ");
         }
         if(rem1>0){
-            result.append(ones(rem1));
+            result.append(ones[rem1]);
         }
         return result.toString().trim();
     }
-
-    public String ones(int rem){
-        if( rem == 1){
-            return "One";
-        }
-        if( rem == 2){
-            return "Two";
-        }
-        if( rem == 3){
-            return "Three";
-        }
-        if( rem == 4){
-            return "Four";
-        }
-        if( rem == 5){
-            return "Five";
-        }
-        if( rem == 6){
-            return "Six";
-        }
-        if( rem == 7){
-            return "Seven";
-        }
-        if( rem == 8){
-            return "Eight";
-        }
-        if( rem == 9){
-            return "Nine";
-        }
-        return "here2";
-    }
-    public String tens(int rem){
-        if( rem==2){
-            return "Twenty";
-        }
-        if( rem==3){
-            return "Thirty";
-        }
-        if( rem==4){
-            return "Forty";
-        }
-        if( rem==5){
-            return "Fifty";
-        }
-        if( rem==6){
-            return "Sixty";
-        }
-        if( rem==7){
-            return "Seventy";
-        }
-        if( rem==8){
-            return "Eighty";
-        }
-        if( rem==9){
-            return "Ninety";
-        }
-        return "here";
-    }
-    public String eleven(int rem){
-        if(rem==0){
-            return "Ten";
-        }
-        if( rem == 1){
-            return "Eleven";
-        }
-        if( rem == 2){
-            return "Twelve";
-        }
-        if( rem == 3){
-            return "Thirteen";
-        }
-        if( rem == 4){
-            return "Fourteen";
-        }
-        if( rem == 5){
-            return "Fifteen";
-        }
-        if( rem == 6){
-            return "Sixteen";
-        }
-        if( rem == 7){
-            return "Seventeen";
-        }
-        if( rem == 8){
-            return "Eighteen";
-        }
-        if( rem == 9){
-            return "Nineteen";
-        }
-        return null;
-    }
+    
 }

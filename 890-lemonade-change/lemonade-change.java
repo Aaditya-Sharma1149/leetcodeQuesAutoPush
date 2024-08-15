@@ -1,28 +1,27 @@
 class Solution {
     public boolean lemonadeChange(int[] bills) {
-        int [] notes = new int[2]; 
+        int fiveCent = 0; 
+        int tenCent=0; 
         for(int i=0; i <bills.length; i++){
             if(bills[i]==5){
-                notes[0]++;
+                fiveCent++;
                 continue;
             }
             if(bills[i]==10){
-                if(notes[0]==0) return false;
-                notes[0]--;
-                notes[1]++;
+                if(fiveCent<1) return false;
+                fiveCent--;
+                tenCent++;
                 continue;
             }
             if(bills[i]==20){
-                if(notes[0]==0) return false;
-                if(notes[1]==0 && notes[0]<3) return false;
-                if(notes[1]>0){
-                    notes[1]--;
-                    notes[0]--;
+                if(fiveCent<1) return false;
+                if(tenCent==0 && fiveCent<3) return false;
+                if(tenCent>0){
+                    tenCent--;
+                    fiveCent--;
                     continue;
                 }
-                if(notes[1]==0){
-                    notes[0]=notes[0]-3;
-                }
+                fiveCent=fiveCent-3;
             }
         }
         return true;

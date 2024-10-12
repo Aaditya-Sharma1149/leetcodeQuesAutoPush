@@ -1,6 +1,6 @@
 class Solution {
     public int findClosestNumber(int[] nums) {
-        int ans = -100001;
+        int ans = nums[0];
         for(int i=0; i<nums.length; i++){
             if(ans==0) return ans;
             if(Math.abs(ans)>Math.abs(nums[i])){

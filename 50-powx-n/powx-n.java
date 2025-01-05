@@ -16,8 +16,7 @@ class Solution {
             return x;
         }
         else if(n%2==0){
-            x=x*x;
-            return myPow(x,n/2);
+            return myPow(x*x,n/2);
         }else{
             return (myPow(x*x,(n/2)+1))/x;
         }

@@ -1,28 +1,36 @@
 class Solution {
     public long maximumSubarraySum(int[] nums, int k) {
-        long res = 0;
-        Map<Integer, Integer> count = new HashMap<>();
-        long curSum = 0;
-        
+        long sum = 0, maxSum = 0;
         int l = 0;
+        boolean[] seen = new boolean[100001];
+
         for (int r = 0; r < nums.length; r++) {
-            curSum += nums[r];
-            count.put(nums[r], count.getOrDefault(nums[r], 0) + 1);
-            
-            if (r - l + 1 > k) {
-                count.put(nums[l], count.get(nums[l]) - 1);
-                if (count.get(nums[l]) == 0) {
-                    count.remove(nums[l]);
+            // If nums[right] is not in the window
+            if (!seen[nums[r]]) {
+                sum += nums[r];
+                seen[nums[r]] = true; // Mark it as seen
+
+                // If the window size equals k
+                if (r - l + 1 == k) {
+                    maxSum = Math.max(maxSum, sum);
+                    // keep the window lower than K
+                    seen[nums[l]] = false;
+                    sum -= nums[l];
+                    ++l;
                 }
-                curSum -= nums[l];
-                l++;
-            }
-            
-            if (count.size() == r - l + 1 && r - l + 1 == k) {
-                res = Math.max(res, curSum);
+            } else {
+                // If nums[right] is a duplicate, move left pointer until nums[right] is excluded
+                while (nums[l] != nums[r]) {
+                    sum -= nums[l];
+                    seen[nums[l]] = false;
+                    ++l;
+                }
+                ++l; // Skip the duplicate element itself
             }
         }
-        
-        return res;
+
+        return maxSum;
+
+
     }
 }

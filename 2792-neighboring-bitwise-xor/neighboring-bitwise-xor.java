@@ -1,10 +1,10 @@
-class Solution {
+public class Solution {
 
     public boolean doesValidArrayExist(int[] derived) {
-        int XOR = 0;
-        for (int element : derived) {
-            XOR = XOR ^ element;
+        int sum = 0;
+        for (int num : derived) {
+            sum += num;
         }
-        return XOR == 0;
+        return sum % 2 == 0;
     }
 }

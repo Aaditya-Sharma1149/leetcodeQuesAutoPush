@@ -26,9 +26,6 @@ class Solution {
         double d1 = Math.sqrt((x2-x1)*(x2-x1) + (y2-y1)*(y2-y1));
         double d2 = Math.sqrt((x2-x3)*(x2-x3) + (y2-y3)*(y2-y3));
         double d3 = Math.sqrt((x3-x1)*(x3-x1) + (y3-y1)*(y3-y1));
-        System.out.println(d1);
-        System.out.println(d2);
-        System.out.println(d3);
         //chatgpted floating point number last digit precission
         final double EPSILON = 1e-9;  // Small tolerance to avoid precision errors
 

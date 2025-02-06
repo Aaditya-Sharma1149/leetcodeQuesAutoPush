@@ -10,12 +10,8 @@ class Solution {
             return true;
         }
         double slopeAB = (double) (points[0][1]-points[1][1]) / (points[0][0]-points[1][0]);
-        double slopeAC = (double) (points[0][1]-points[2][1]) / (points[0][0]-points[2][0]); //1-2/0-2
+        double slopeAC = (double) (points[0][1]-points[2][1]) / (points[0][0]-points[2][0]);
         if ( slopeAB == slopeAC ){
-            System.out.println(slopeAC);
-            System.out.println((points[0][1] + "-" +points[2][1]) + "=" + (points[0][1]-points[2][1]));
-            System.out.println( (points[0][0]+ "-" +points[2][0]) + "=" + (points[0][0]-points[2][0]));
-            System.out.println((points[0][1]-points[2][1]) / (points[0][0]-points[2][0]));
             return false;
         }
         return true;

@@ -1,19 +1,18 @@
 class Solution {
-    public int solve(int[] arr , int ind ,  int[]dp){
-        if(ind<0){
+    public int rob(int[] nums) {
+        int [] dp = new int [nums.length];
+        Arrays.fill(dp,-1);
+        return helper(nums,0,dp);
+    }
+    public int helper(int[] nums, int i, int [] dp){
+        if(i>nums.length-1){
             return 0;
         }
-        if(dp[ind]!=-1){
-            return dp[ind];
+        if(dp[i]!=-1){
+            return dp[i];
         }
-        int nottake = 0+solve(arr,ind-1 , dp);
-        int take = arr[ind] + solve(arr,ind-2 , dp);
-        return  dp[ind] = Math.max(take,nottake);
-    }
-    public int rob(int[] nums) {
-        int[]dp = new int[nums.length];
-        Arrays.fill(dp , -1);
-        int ans = solve(nums,nums.length-1 , dp);
-        return ans;
+        int taken = nums[i] + helper(nums,i+2,dp);
+        int nottaken = helper(nums,i+1,dp);
+        return dp[i] = Math.max(taken,nottaken);
     }
 }

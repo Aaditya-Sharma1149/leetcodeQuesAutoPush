@@ -10,17 +10,12 @@ class Solution {
                 z++;
             }
             if(z>k){
-                ans = Math.max(ans,r-l);
-                while(z>k){
-                    if(nums[l]==0){
-                        z--;
-                    }
-                    l++;
-                }
+                if(nums[l]==0) z--;
+                l++;
             }
+            if(z<=k) ans = Math.max(ans,r-l+1);
             r++;
         }
-        ans = Math.max(ans,r-l);
         return ans;
     }
 }

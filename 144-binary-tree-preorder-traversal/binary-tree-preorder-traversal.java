@@ -24,10 +24,10 @@ class Solution {
         List <Integer> left = preorderTraversal(root.left);
         List <Integer> right = preorderTraversal(root.right);
         if(left!=null){
-            list.addAll(preorderTraversal(root.left));
+            list.addAll(left);
         }
         if(right!=null){
-            list.addAll(preorderTraversal(root.right));
+            list.addAll(right);
         }
         return list;
     }

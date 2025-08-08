@@ -5,7 +5,8 @@ class Solution {
         for(int i=0; i<visited.length; i++){
             if(visited[i]==0){
                 ans++;
-                bfs(isConnected, visited,i);
+                //bfs(isConnected, visited,i);
+                dfs(isConnected,visited,i);
             }
         }
         return ans;
@@ -23,5 +24,13 @@ class Solution {
                 }
             }
         }
+    }
+    public void dfs(int [][] isConnected, int [] visited, int curr){
+        visited[curr]=1;
+        for(int i=0; i<isConnected[curr].length; i++){
+            if(isConnected[curr][i]==1 && i != curr && visited[i]==0){
+                dfs(isConnected,visited,i);
+            }
+        } 
     }
 }

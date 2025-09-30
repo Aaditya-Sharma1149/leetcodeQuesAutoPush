@@ -44,8 +44,7 @@ class Solution {
                 count2++;
             }
         }
-        System.out.println(candidate1 +" " + count1 );
-        System.out.println(candidate2 + " " + count2);
+
         List <Integer> list = new ArrayList<>();
         if(count1>nums.length/3) list.add(candidate1);
         if(count2>nums.length/3) list.add(candidate2);

@@ -1,17 +1,26 @@
 class Solution {
     public int rob(int[] nums) {
-        int n = nums.length;
-        if (n == 1) return nums[0];
-        return Math.max(robLinear(nums, 0, n - 2), robLinear(nums, 1, n - 1));
+        if(nums.length==1) return nums[0];
+        return Math.max(onerob(nums),tworob(nums));
     }
-
-    private int robLinear(int[] nums, int start, int end) {
-        int prev2 = 0, prev1 = 0;
-        for (int i = start; i <= end; i++) {
-            int temp = Math.max(prev1, prev2 + nums[i]);
-            prev2 = prev1;
-            prev1 = temp;
+    public int onerob(int[] nums) {
+        int [] dp = new int[nums.length];  
+        dp[0] = nums[0];
+        dp[1] = Math.max(nums[1],nums[0]);
+        for(int i=2; i<nums.length-1; i++){
+            dp[i] = Math.max(nums[i] + dp[i-2], dp[i-1]);
         }
-        return prev1;
+        return dp[nums.length-2];
     }
+    public int tworob(int[] nums) {
+        if(nums.length==2) return nums[1];
+        int [] dp = new int[nums.length];  
+        dp[1] = nums[1];
+        dp[2] = Math.max(nums[1],nums[2]);
+        for(int i=3; i<nums.length; i++){
+            dp[i] = Math.max(nums[i] + dp[i-2], dp[i-1]);
+        }
+        return dp[nums.length-1];
+    }
+    
 }

@@ -7,10 +7,6 @@ class Solution {
         for(int i=1; i<nums.length; i++){
             prefix[i] = prefix[i-1]+nums[i];
         }
-        for(int n:prefix){
-            System.out.print(n);
-        }
-
         for(int i=nums.length-1; i>=0; i--){
             if(prefix[i]==goal) ans++;
             for(int j=i-1; j>=0; j--){

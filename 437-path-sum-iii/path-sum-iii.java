@@ -14,22 +14,23 @@
  * }
  */
 class Solution {
-    int ans=0;
+    int ans = 0;
     public int pathSum(TreeNode root, int targetSum) {
-        if(root==null) return 0;
-        helper(root,targetSum,0);
-        pathSum(root.left,targetSum);
-        pathSum(root.right,targetSum);
+        traversal(root,targetSum);
         return ans;
     }
-    public void helper(TreeNode root, int targetSum, long sum){
-        if ( root==null ) return;
-        sum+= root.val;//sum = sum + root.val;
-        if ( sum == targetSum ){
+    public void dfs(TreeNode root, long targetSum){
+        if(root==null) return;
+        if(targetSum == root.val){
             ans++;
         }
-        helper(root.left,targetSum,sum);
-        helper(root.right,targetSum,sum);
-        return;
+        dfs(root.left, targetSum-root.val);
+        dfs(root.right, targetSum-root.val);
+    }
+    public void traversal(TreeNode root, int targetSum){
+        if(root==null) return;
+        dfs(root,targetSum);
+        traversal(root.left,targetSum);
+        traversal(root.right,targetSum);
     }
 }

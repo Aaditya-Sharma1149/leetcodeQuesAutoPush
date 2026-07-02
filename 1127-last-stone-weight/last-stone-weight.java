@@ -1,14 +1,28 @@
+import java.util.Collections;
+import java.util.PriorityQueue;
+
 class Solution {
     public int lastStoneWeight(int[] stones) {
+        // Max-heap configuration
         PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
-        for(int i=0; i<stones.length; i++){
-            pq.add(stones[i]);
+        
+        // O(N log N) insertion (Java doesn't have native O(N) heapify for primitive arrays)
+        for (int stone : stones) {
+            pq.add(stone);
         }
-       while (pq.size() > 1) {
+        
+        // Process stones
+        while (pq.size() > 1) {
             int first = pq.poll(); 
             int sec = pq.poll();   
-            pq.add(first - sec);
+            
+            // Only add back if there is a remainder
+            if (first != sec) {
+                pq.add(first - sec);
+            }
         }
-        return pq.poll();
+        
+        // Handle empty heap edge case safely
+        return pq.isEmpty() ? 0 : pq.poll();
     }
 }

@@ -9,12 +9,13 @@ class Solution {
 
 
         StringBuilder str = new StringBuilder();
+        StringBuilder key = new StringBuilder();
         for(int i=0; i<s.length(); i++){
             if(s.charAt(i)!='('){
                 str.append(s.charAt(i));
                 continue;
             }
-            StringBuilder key = new StringBuilder();
+            
             i++;
             while(s.charAt(i)!=')'){
                 key.append(s.charAt(i));
@@ -22,9 +23,11 @@ class Solution {
             }
             if(map.get(key.toString())==null){
                 str.append('?');
+                key.setLength(0);
                 continue;
             }
             str.append(map.get(key.toString()));
+            key.setLength(0);
         }
         
         return str.toString();

@@ -8,13 +8,12 @@ class Solution {
             int mid = (r - l)/2 + l;
             if(helper(citations,mid)){
                 l = mid + 1;
-                ans = Math.max(ans,mid);
             }
             else{
                 r = mid-1;
             }
         }
-        return ans; 
+        return r; 
 
     }
     public boolean helper(int [] nums, int h){

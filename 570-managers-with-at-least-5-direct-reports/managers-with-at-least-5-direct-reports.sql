@@ -1,6 +1,6 @@
 SELECT a.name
 FROM Employee AS a
-JOIN Employee AS b
+left JOIN Employee AS b
     ON a.id = b.managerId
 GROUP BY a.id, a.name
 Having count(a.id) >= 5;

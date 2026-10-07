@@ -1,9 +1,6 @@
 SELECT 
     b.machine_id,
-    ROUND(
-        (SUM(b.timestamp) - SUM(a.timestamp)) / COUNT(b.machine_id),
-        3
-    ) AS processing_time
+ROUND(AVG(b.timestamp - a.timestamp), 3) AS processing_time
 FROM Activity AS a
 JOIN Activity AS b
     ON a.machine_id = b.machine_id
